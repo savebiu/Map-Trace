@@ -41,7 +41,11 @@ public class Map_Track: MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         map = FindObjectOfType<Map>();       //调用Map脚本
         currentPatrolIndex = 0;     //初始化巡逻点索引
-        // StopAllCoroutines();        //停止所有协程
+
+        //注册敌人的小地图
+        map.RegisterEnemy(transform);       //注册敌人的小地图
+
+        StopAllCoroutines();        //停止所有协程
         StartCoroutine(Patrol());       //开始巡逻
     }
 
@@ -49,11 +53,11 @@ public class Map_Track: MonoBehaviour
         //追踪
         if(isChasing){
             agent.SetDestination(player.position);//SetDestination设置目标位置
-            map.UpdateEnemyPosition(transform, true);        //更新怪物位置,并传入isVisiable为true
+            //map.UpdateEnemyPosition(transform, true);        //更新怪物位置,并传入isVisiable为true
         }
-        else{
-            map.UpdateEnemyPosition(transform, false);       //更新怪物位置,并传入isVisiable为false
-        }
+        //else{
+        //    map.UpdateEnemyPosition(transform, false);       //更新怪物位置,并传入isVisiable为false
+        //}
         
     }
 
